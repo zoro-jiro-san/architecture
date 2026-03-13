@@ -37,7 +37,7 @@
   <text x="953" y="305" class="small">code / test / build</text>
 
   <rect x="580" y="440" width="640" height="230" class="agent"/>
-  <text x="600" y="468" class="txt">Persistent Agent-Scoped Sandboxes</text>
+  <text x="600" y="468" class="txt">Persistent Agent-Scoped Sandbox (tx only)</text>
 
   <rect x="680" y="510" width="210" height="96" class="tx"/>
   <text x="763" y="545" class="txt">tx</text>
@@ -46,8 +46,8 @@
 
   <rect x="940" y="510" width="230" height="96" class="jan"/>
   <text x="1018" y="545" class="txt">janitor</text>
-  <text x="970" y="568" class="small">cleanup + memory/disk hygiene</text>
-  <text x="1000" y="589" class="small">periodic maintenance</text>
+  <text x="952" y="568" class="small">host-level monitoring/cleanup</text>
+  <text x="955" y="589" class="small">sandbox.mode=off (device visibility)</text>
 
   <rect x="60" y="220" width="230" height="100" class="box"/>
   <text x="93" y="252" class="txt">Secrets Store</text>
@@ -92,5 +92,5 @@
 
   <path d="M290 410 L300 410 L300 140" class="arrow"/>
 
-  <text x="30" y="780" class="small">Live profile: mode=all • session scope default • tx/janitor agent-scope • maxConcurrent=6 • subagents=12</text>
+  <text x="30" y="780" class="small">Live profile: mode=all • session scope default • tx agent-scope + janitor host-mode • maxConcurrent=6 • subagents=12</text>
 </svg>

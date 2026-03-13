@@ -26,7 +26,7 @@
 - Cache/temp cleanup
 - Memory/disk hygiene checks
 - Periodic maintenance operations
-- Sandbox scope set to `agent`
+- Runs on host (`sandbox.mode = off`) for full-device visibility
 
 ---
 
@@ -41,7 +41,7 @@ Global defaults:
 
 Specialized overrides:
 - `tx`: `sandbox.scope = agent` (persistent transaction isolation)
-- `janitor`: `sandbox.scope = agent` (persistent maintenance isolation)
+- `janitor`: `sandbox.mode = off` (host-level monitoring/cleanup)
 
 Why:
 - Session scope for disposable work

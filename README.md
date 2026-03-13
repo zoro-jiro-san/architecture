@@ -14,7 +14,8 @@ Latest production architecture for Zoro on OpenClaw (Raspberry Pi).
 - Sandbox-first execution (`mode=all`)
 - Mixed sandbox scopes:
   - Session-scoped: research/coder
-  - Agent-scoped: tx/janitor
+  - Agent-scoped: tx
+  - Host mode (no sandbox): janitor
 - High-throughput Pi profile with memory guardrails
 - Periodic cleanup + skill refresh jobs
 

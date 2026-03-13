@@ -4,22 +4,22 @@ flowchart TB
     M --> R[research agent\nExternal research/API]
     M --> C[coder agent\nCode/Test/Build]
     M --> T[tx agent\nTransaction specialist]
-    M --> J[janitor agent\nCleanup/Memory/Disk hygiene]
+    M --> J[janitor agent\nHost monitoring/cleanup]
 
-    subgraph SESSION_SANDBOX[Session-Scoped Sandbox Layer]
+    subgraph SESSION_SANDBOX[Session-Scoped Sandboxes]
       R --> SR[(sandbox session)]
       C --> SC[(sandbox session)]
     end
 
-    subgraph AGENT_SANDBOX[Persistent Agent-Scoped Sandboxes]
+    subgraph AGENT_SANDBOX[Persistent Agent-Scoped Sandbox]
       T --> ST[(tx sandbox)]
-      J --> SJ[(janitor sandbox)]
     end
+
+    J --> HOST[Host OS / Device Resources]
 
     SR --> EXT[External APIs/Web]
     SC --> REPO[Repos/Toolchains]
     ST --> PAY[Payment rails (future)]
-    SJ --> SYS[System hygiene tasks]
 
     SEC[(Secrets Store\n~/.openclaw/secrets)] --> R
     SEC --> C
