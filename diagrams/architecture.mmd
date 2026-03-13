@@ -1,0 +1,23 @@
+flowchart TB
+    U[User: Sarthi] --> M[main agent\nOrchestrator]
+
+    M --> R[research agent\nExternal research/API]
+    M --> C[coder agent\nCode/test tasks]
+    M --> T[tx agent\nFuture payments/transactions]
+
+    subgraph Sandbox Layer (session-scoped)
+      R --> SR[(sandbox session)]
+      C --> SC[(sandbox session)]
+      T --> ST[(sandbox session)]
+    end
+
+    SR --> EXT[External APIs / Web]
+    SC --> REPO[Code repos / toolchains]
+    ST --> PAY[Payment rails (future)]
+
+    SECRETS[(~/.openclaw/secrets\nchmod 600)] --> R
+    SECRETS --> C
+    SECRETS --> T
+
+    LOGS[Redacted Logs] --> M
+    LEARN[learnings.md / principles] --> M
