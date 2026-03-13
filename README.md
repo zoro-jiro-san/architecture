@@ -30,3 +30,9 @@ Latest production architecture for Zoro on OpenClaw (Raspberry Pi).
 - [`LEARNINGS.md`](./LEARNINGS.md)
 - [`IMPLEMENTATION_CHECKLIST.md`](./IMPLEMENTATION_CHECKLIST.md)
 
+
+## Extended Docs
+- [`ARCHITECTURE_DEEP_DIVE.md`](./ARCHITECTURE_DEEP_DIVE.md)
+- [`TRUST_BOUNDARIES.md`](./TRUST_BOUNDARIES.md)
+- [`TX_GUARDRAILS.md`](./TX_GUARDRAILS.md)
+- [`RUNBOOKS.md`](./RUNBOOKS.md)
