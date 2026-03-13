@@ -1,12 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820">
   <defs>
     <style>
       .box { fill:#f8fafc; stroke:#334155; stroke-width:2; rx:10; ry:10; }
-      .title { font: 700 22px Arial, sans-serif; fill:#0f172a; }
+      .title { font: 700 24px Arial, sans-serif; fill:#0f172a; }
       .txt { font: 14px Arial, sans-serif; fill:#0f172a; }
       .small { font: 12px Arial, sans-serif; fill:#334155; }
-      .sandbox { fill:#eef6ff; stroke:#2563eb; stroke-width:2; rx:12; ry:12; }
+      .session { fill:#eef7ff; stroke:#2563eb; stroke-width:2; rx:12; ry:12; }
+      .agent { fill:#f8fafc; stroke:#64748b; stroke-width:2; rx:12; ry:12; }
       .tx { fill:#fff1f2; stroke:#b91c1c; stroke-width:2; rx:10; ry:10; }
+      .jan { fill:#ecfeff; stroke:#0e7490; stroke-width:2; rx:10; ry:10; }
       .arrow { stroke:#475569; stroke-width:2; marker-end:url(#m); fill:none; }
     </style>
     <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
@@ -14,61 +16,81 @@
     </marker>
   </defs>
 
-  <text x="30" y="40" class="title">Zoro Architecture (OpenClaw, Raspberry Pi)</text>
+  <text x="30" y="42" class="title">Zoro Architecture — Live (5 Agents, Sandbox-First)</text>
 
-  <rect x="60" y="90" width="180" height="60" class="box"/>
-  <text x="95" y="125" class="txt">User (Sarthi)</text>
+  <rect x="60" y="90" width="190" height="60" class="box"/>
+  <text x="112" y="126" class="txt">User (Sarthi)</text>
 
-  <rect x="300" y="80" width="220" height="80" class="box"/>
-  <text x="340" y="112" class="txt">main agent</text>
-  <text x="330" y="136" class="small">orchestrator + policy gate</text>
+  <rect x="300" y="80" width="250" height="80" class="box"/>
+  <text x="390" y="112" class="txt">main agent</text>
+  <text x="328" y="136" class="small">orchestrator + policy + response synthesis</text>
 
-  <rect x="560" y="180" width="600" height="360" class="sandbox"/>
-  <text x="580" y="210" class="txt">Sandbox Layer (mode=all, scope=session, workspaceAccess=rw)</text>
+  <rect x="580" y="180" width="640" height="230" class="session"/>
+  <text x="600" y="208" class="txt">Session-Scoped Sandboxes</text>
 
-  <rect x="610" y="250" width="180" height="80" class="box"/>
-  <text x="640" y="280" class="txt">research agent</text>
-  <text x="642" y="303" class="small">API/Web tasks</text>
+  <rect x="640" y="250" width="210" height="86" class="box"/>
+  <text x="705" y="282" class="txt">research</text>
+  <text x="675" y="305" class="small">external research / APIs</text>
 
-  <rect x="830" y="250" width="180" height="80" class="box"/>
-  <text x="872" y="280" class="txt">coder agent</text>
-  <text x="860" y="303" class="small">code/test tasks</text>
+  <rect x="900" y="250" width="210" height="86" class="box"/>
+  <text x="973" y="282" class="txt">coder</text>
+  <text x="953" y="305" class="small">code / test / build</text>
 
-  <rect x="720" y="370" width="180" height="90" class="tx"/>
-  <text x="778" y="404" class="txt">tx agent</text>
-  <text x="734" y="428" class="small">future payments/transactions</text>
+  <rect x="580" y="440" width="640" height="230" class="agent"/>
+  <text x="600" y="468" class="txt">Persistent Agent-Scoped Sandboxes</text>
 
-  <rect x="1040" y="250" width="130" height="60" class="box"/>
-  <text x="1065" y="286" class="small">External APIs</text>
-  <rect x="1040" y="330" width="130" height="60" class="box"/>
-  <text x="1068" y="366" class="small">Code Repos</text>
-  <rect x="1040" y="410" width="130" height="60" class="box"/>
-  <text x="1058" y="446" class="small">Payment Rails</text>
+  <rect x="680" y="510" width="210" height="96" class="tx"/>
+  <text x="763" y="545" class="txt">tx</text>
+  <text x="705" y="568" class="small">transaction specialist</text>
+  <text x="703" y="589" class="small">ETHSKILLS + confirmation-first</text>
 
-  <rect x="60" y="220" width="220" height="95" class="box"/>
-  <text x="85" y="252" class="txt">Secrets Store</text>
+  <rect x="940" y="510" width="230" height="96" class="jan"/>
+  <text x="1018" y="545" class="txt">janitor</text>
+  <text x="970" y="568" class="small">cleanup + memory/disk hygiene</text>
+  <text x="1000" y="589" class="small">periodic maintenance</text>
+
+  <rect x="60" y="220" width="230" height="100" class="box"/>
+  <text x="93" y="252" class="txt">Secrets Store</text>
   <text x="82" y="276" class="small">~/.openclaw/secrets</text>
   <text x="110" y="298" class="small">chmod 600</text>
 
-  <rect x="60" y="350" width="220" height="100" class="box"/>
-  <text x="86" y="382" class="txt">Memory + Learnings</text>
-  <text x="78" y="406" class="small">learnings.md / principles</text>
-  <text x="88" y="428" class="small">validated distillation</text>
+  <rect x="60" y="350" width="230" height="120" class="box"/>
+  <text x="80" y="382" class="txt">Learning/Memory Layer</text>
+  <text x="80" y="406" class="small">learnings.md + principles</text>
+  <text x="80" y="428" class="small">validated distillation loop</text>
+  <text x="80" y="450" class="small">daily sync to GitHub</text>
 
-  <path d="M240 120 L300 120" class="arrow"/>
-  <path d="M520 120 L610 250" class="arrow"/>
-  <path d="M520 120 L830 250" class="arrow"/>
-  <path d="M520 120 L790 370" class="arrow"/>
+  <rect x="60" y="500" width="230" height="120" class="box"/>
+  <text x="96" y="532" class="txt">Schedulers</text>
+  <text x="78" y="556" class="small">docker prune: every 2h</text>
+  <text x="78" y="578" class="small">janitor: every 30m</text>
+  <text x="78" y="600" class="small">ethskills refresh: every 4h</text>
 
-  <path d="M790 290 L1040 280" class="arrow"/>
-  <path d="M1010 290 L1040 360" class="arrow"/>
-  <path d="M900 420 L1040 440" class="arrow"/>
+  <rect x="1240" y="250" width="30" height="40" fill="none"/>
+  <rect x="1220" y="235" width="40" height="60" fill="none"/>
 
-  <path d="M280 250 L610 290" class="arrow"/>
-  <path d="M280 260 L830 290" class="arrow"/>
-  <path d="M280 270 L720 420" class="arrow"/>
+  <rect x="1140" y="250" width="120" height="60" class="box"/>
+  <text x="1156" y="286" class="small">External APIs</text>
+  <rect x="1140" y="325" width="120" height="60" class="box"/>
+  <text x="1165" y="361" class="small">Repos</text>
+  <rect x="1140" y="510" width="120" height="60" class="box"/>
+  <text x="1153" y="546" class="small">Payment rails</text>
 
-  <path d="M280 390 L300 390 L300 140" class="arrow"/>
+  <path d="M250 120 L300 120" class="arrow"/>
+  <path d="M550 120 L730 250" class="arrow"/>
+  <path d="M550 120 L1000 250" class="arrow"/>
+  <path d="M550 120 L785 510" class="arrow"/>
+  <path d="M550 120 L1055 510" class="arrow"/>
 
-  <text x="60" y="710" class="small">Runtime profile: maxConcurrent=6, subagents.maxConcurrent=12, docker prune every 2h</text>
+  <path d="M290 260 L640 290" class="arrow"/>
+  <path d="M290 270 L900 290" class="arrow"/>
+  <path d="M290 285 L680 550" class="arrow"/>
+
+  <path d="M850 290 L1140 280" class="arrow"/>
+  <path d="M1110 290 L1140 355" class="arrow"/>
+  <path d="M890 555 L1140 540" class="arrow"/>
+
+  <path d="M290 410 L300 410 L300 140" class="arrow"/>
+
+  <text x="30" y="780" class="small">Live profile: mode=all • session scope default • tx/janitor agent-scope • maxConcurrent=6 • subagents=12</text>
 </svg>

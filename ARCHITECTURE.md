@@ -1,70 +1,94 @@
-# Architecture Blueprint (Applied)
+# Zoro Architecture Blueprint (Latest)
 
-## 1) Agent Topology
+## Runtime Topology (Live)
 
-### main (default)
-- Role: orchestration, user interaction, policy enforcement
-- Strategy: delegate external/research/code/tx tasks to specialist agents
+### 1) `main` (default)
+- User-facing orchestrator
+- Delegates specialized tasks to dedicated agents
+- Applies policy and safety gates
 
-### research
-- Role: web/API research and knowledge synthesis
-- Security: sandboxed, session-isolated, disposable runtime
+### 2) `research`
+- External research + API intelligence
+- Always sandboxed
+- Session-isolated for disposable execution
 
-### coder
-- Role: implementation/testing/patching in isolated environment
-- Security: sandboxed with controlled filesystem scope
+### 3) `coder`
+- Code/test/build operations
+- Sandboxed with constrained tool surface
 
-### tx
-- Role: future payment/transaction operations
-- Security: strict tool restrictions, explicit human confirmation policy
+### 4) `tx` (permanent transaction specialist)
+- Transaction planning and verification
+- Uses ETHSKILLS knowledge base
+- Confirmation-first workflow for state-changing operations
+- Sandbox scope set to `agent` for persistent isolated domain
 
-## 2) Sandbox Policy
+### 5) `janitor` (permanent maintenance specialist)
+- Cache/temp cleanup
+- Memory/disk hygiene checks
+- Periodic maintenance operations
+- Sandbox scope set to `agent`
+
+---
+
+## Sandboxing Model (Live)
+
+Global defaults:
 - `sandbox.mode = all`
 - `sandbox.scope = session`
 - `workspaceAccess = rw`
-- Docker image: `openclaw-sandbox-common:bookworm-slim`
-- Network: `bridge` (needed for research jobs)
+- image: `openclaw-sandbox-common:bookworm-slim`
+- network: `bridge`
 
-### Research sandbox image includes
-- curl
-- python3
-- git
-- jq
+Specialized overrides:
+- `tx`: `sandbox.scope = agent` (persistent transaction isolation)
+- `janitor`: `sandbox.scope = agent` (persistent maintenance isolation)
 
-## 3) Security Controls
-- Elevated actions restricted to allowlisted Telegram sender
-- Secrets stored in `~/.openclaw/secrets/*.env` with `chmod 600`
-- Log redaction enabled
+Why:
+- Session scope for disposable work
+- Agent scope for persistent specialist behavior/state
+
+---
+
+## Sub-agent Orchestration Flow
+
+1. `main` receives request
+2. `main` classifies task domain
+3. Route to specialist (`research` / `coder` / `tx` / `janitor`)
+4. Specialist executes in sandbox
+5. Return summary + artifacts to `main`
+6. `main` provides final user response
+
+Policy:
+- external interactions should be sandboxed
+- host-level execution minimized
+- secrets never echoed in outputs
+
+---
+
+## Safety & Secrets
+
+- Secrets stored under `~/.openclaw/secrets` with restrictive perms
+- Redacted logging enabled
 - mDNS minimized
-- Post-Docker cleanup policy enforced
+- High-risk domains (transactions) isolated with stricter controls
 
-## 4) Self-learning Loop (from Hermes/OpenClaw-compatible patterns)
-- Nightly learning window: 00:00–06:00
-- Distill results to durable principles and operational learnings
-- Keep validation pass before committing learned conclusions
-- Avoid GPU/RL-heavy pipelines on Pi (not resource fit)
+---
 
-## 5) Performance Profile (Pi)
+## Performance Profile (Pi)
+
 - `agents.defaults.maxConcurrent = 6`
 - `agents.defaults.subagents.maxConcurrent = 12`
 - Docker prune every 2 hours
-- Keep heavy jobs in sandbox workers, not main loop
+- Janitor cleanup every 30 minutes
 
-## 6) External Research Insights Applied
+Goal: high CPU utilization with bounded memory growth.
 
-### OpenSandbox
-- Adopted principle: network-aware sandboxing (egress controls concept)
-- Practical application now: sandbox-first + disposable sessions + strict secrets
+---
 
-### agency-agents
-- Adopted principle: role-specific agents and installable OpenClaw workspaces
-- Practical application now: explicit 4-agent topology
+## Scheduled Jobs (Live)
 
-### autoresearch
-- Adopted principle: autonomous research loops and artifact distillation
-- Rejected for Pi runtime: CUDA/GPU-heavy dependency path
-
-### MiroFish / thinking-context
-- Adopted principle: structured planning/checklists/validation passes
-- Policy: no raw private reasoning exposure; use auditable summaries
+- `0 */2 * * * docker system prune -f`
+- `*/30 * * * * janitor-cleanup.sh`
+- `15 */4 * * * update-ethskills.sh`
+- `0 6 * * * my-learnings push`
 
