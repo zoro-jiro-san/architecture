@@ -4,6 +4,14 @@ Latest production architecture for Zoro on OpenClaw (Raspberry Pi).
 
 ## Visual Architecture (Latest)
 
+### Detailed View
+![Detailed Architecture Diagram](./diagrams/architecture-detailed.svg)
+
+- Detailed SVG: [`diagrams/architecture-detailed.svg`](./diagrams/architecture-detailed.svg)
+- Detailed Mermaid: [`diagrams/architecture-detailed.mmd`](./diagrams/architecture-detailed.mmd)
+
+### Standard View
+
 ![Zoro Architecture Diagram](./diagrams/architecture.svg)
 
 - Mermaid source: [`diagrams/architecture.mmd`](./diagrams/architecture.mmd)

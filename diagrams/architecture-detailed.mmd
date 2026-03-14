@@ -1,0 +1,28 @@
+flowchart TB
+    U[User\nSarthi] --> M[main\n- classify intent\n- set policy bounds\n- synthesize final output]
+
+    M --> MOD[moderator (host)\n- monitor progress\n- detect stuck workers\n- escalate failures\n- report status]
+    M --> PLAN[planner\n- outline-first plan\n- define outputs\n- split into stories]
+
+    PLAN --> R[research\n(session sandbox)\n- web/API discovery\n- insightforge-lite decomposition\n- source confidence tags]
+    PLAN --> C[coder\n(session sandbox)\n- implement/test/fix\n- bounded ReACT loops\n- verify artifacts]
+    PLAN --> T[tx\n(agent sandbox, isolated)\n- tx preflight checks\n- risk tiers SAFE/CAUTION/ESCALATE\n- explicit human confirm for state changes\n- onchain settlement workflows]
+    PLAN --> J[janitor (host)\n- memory/disk checks\n- cleanup temp/cache\n- docker hygiene]
+
+    MOD --> SW[swarm coordinator\n- state machine\n- retries with caps\n- worker TTL control]
+
+    SW --> WR[worker-research-*\n(ephemeral sandbox)\n- short-lived task workers]
+    SW --> WC[worker-code-*\n(ephemeral sandbox)\n- short-lived task workers]
+    SW --> WV[worker-verify-*\n(ephemeral sandbox)\n- output validation workers]
+
+    M --> STATE[state model\nCREATED→CLAIMED→RUNNING→DONE/FAILED/RETRYING]
+    M --> AUDIT[JSONL audit logs\nrotated + summarized]
+    M --> MEM[memory loop\nobserver daily\nreflector weekly]
+
+    SEC[(secrets store\n~/.openclaw/secrets\n600 perms)] --> R
+    SEC --> C
+    SEC --> T
+
+    R --> EXT[External APIs/Web]
+    C --> REPO[Repos/Toolchains]
+    T --> PAY[Blockchain/Payment Rails]

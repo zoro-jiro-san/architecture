@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980">
+  <defs>
+    <style>
+      .box{fill:#f8fafc;stroke:#334155;stroke-width:2;rx:10;ry:10}
+      .title{font:700 24px Arial;fill:#0f172a}
+      .txt{font:14px Arial;fill:#0f172a}
+      .sm{font:12px Arial;fill:#334155}
+      .sb{fill:#eef7ff;stroke:#2563eb;stroke-width:2;rx:12;ry:12}
+      .tx{fill:#fff1f2;stroke:#b91c1c;stroke-width:2;rx:10;ry:10}
+      .host{fill:#ecfeff;stroke:#0e7490;stroke-width:2;rx:10;ry:10}
+      .ep{fill:#fef9c3;stroke:#a16207;stroke-width:2;rx:10;ry:10}
+      .arr{stroke:#475569;stroke-width:2;marker-end:url(#m);fill:none}
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#475569"/></marker>
+  </defs>
+  <text x="24" y="36" class="title">Zoro Architecture — Detailed Roles, Boundaries, and Swarm Control</text>
+
+  <rect x="40" y="70" width="150" height="56" class="box"/><text x="88" y="104" class="txt">User</text>
+  <rect x="220" y="60" width="250" height="84" class="box"/>
+  <text x="312" y="90" class="txt">main</text>
+  <text x="238" y="112" class="sm">classify intent • set policy • synthesize output</text>
+
+  <rect x="500" y="60" width="260" height="84" class="host"/>
+  <text x="590" y="90" class="txt">moderator</text>
+  <text x="516" y="112" class="sm">host oversight • stuck detection • escalation</text>
+
+  <rect x="790" y="60" width="230" height="84" class="box"/>
+  <text x="870" y="90" class="txt">planner</text>
+  <text x="806" y="112" class="sm">outline-first • story split • output contracts</text>
+
+  <rect x="220" y="180" width="1260" height="300" class="sb"/>
+  <text x="244" y="208" class="txt">Sandbox Domains</text>
+
+  <rect x="280" y="240" width="240" height="110" class="box"/>
+  <text x="372" y="270" class="txt">research</text>
+  <text x="296" y="292" class="sm">session sandbox • web/api discovery</text>
+  <text x="296" y="312" class="sm">insightforge-lite decomposition</text>
+  <text x="296" y="332" class="sm">confidence-tagged synthesis</text>
+
+  <rect x="550" y="240" width="240" height="110" class="box"/>
+  <text x="650" y="270" class="txt">coder</text>
+  <text x="566" y="292" class="sm">session sandbox • code/test/fix</text>
+  <text x="566" y="312" class="sm">bounded ReACT loops</text>
+  <text x="566" y="332" class="sm">artifact validation</text>
+
+  <rect x="820" y="230" width="300" height="130" class="tx"/>
+  <text x="952" y="262" class="txt">tx</text>
+  <text x="840" y="286" class="sm">agent-scoped dedicated sandbox</text>
+  <text x="840" y="306" class="sm">preflight checks + risk tiers</text>
+  <text x="840" y="326" class="sm">state-changing actions need human confirm</text>
+  <text x="840" y="346" class="sm">blockchain/payment settlement workflows</text>
+
+  <rect x="1150" y="240" width="300" height="110" class="host"/>
+  <text x="1260" y="270" class="txt">janitor</text>
+  <text x="1168" y="292" class="sm">host-mode memory/disk/cache cleanup</text>
+  <text x="1168" y="312" class="sm">periodic hygiene + docker maintenance</text>
+
+  <rect x="840" y="380" width="610" height="90" class="ep"/>
+  <text x="862" y="408" class="txt">Ephemeral Swarm Workers (TTL-bound)</text>
+  <text x="862" y="430" class="sm">worker-research-* • worker-code-* • worker-verify-* • isolated per task</text>
+  <text x="862" y="452" class="sm">spawned by coordinator, auto-killed on done/timeout</text>
+
+  <rect x="40" y="520" width="440" height="170" class="box"/>
+  <text x="62" y="548" class="txt">Control + Observability</text>
+  <text x="62" y="572" class="sm">State machine: CREATED→CLAIMED→RUNNING→DONE/FAILED/RETRYING</text>
+  <text x="62" y="594" class="sm">JSONL audit logs with rotation</text>
+  <text x="62" y="616" class="sm">Observer/Reflector memory loop (daily/weekly)</text>
+  <text x="62" y="638" class="sm">Bounded retries + explicit failure classes</text>
+
+  <rect x="520" y="520" width="300" height="170" class="box"/>
+  <text x="542" y="548" class="txt">Secrets Boundary</text>
+  <text x="542" y="572" class="sm">~/.openclaw/secrets</text>
+  <text x="542" y="594" class="sm">strict perms (600)</text>
+  <text x="542" y="616" class="sm">never printed in outputs/logs</text>
+
+  <rect x="860" y="520" width="260" height="70" class="box"/><text x="922" y="562" class="sm">External APIs / Web</text>
+  <rect x="860" y="610" width="260" height="70" class="box"/><text x="928" y="652" class="sm">Repos / Toolchains</text>
+  <rect x="1160" y="565" width="300" height="90" class="box"/>
+  <text x="1250" y="598" class="sm">Blockchain / Payment Rails</text>
+  <text x="1180" y="620" class="sm">(only via tx policy + confirmation)</text>
+
+  <path d="M190 98 L220 98" class="arr"/>
+  <path d="M470 98 L500 98" class="arr"/>
+  <path d="M760 98 L790 98" class="arr"/>
+
+  <path d="M905 144 L400 240" class="arr"/>
+  <path d="M905 144 L670 240" class="arr"/>
+  <path d="M905 144 L970 230" class="arr"/>
+  <path d="M905 144 L1280 240" class="arr"/>
+
+  <path d="M630 98 L1140 400" class="arr"/>
+  <path d="M630 98 L260 520" class="arr"/>
+  <path d="M630 98 L670 520" class="arr"/>
+
+  <path d="M520 292 L860 555" class="arr"/>
+  <path d="M790 292 L860 645" class="arr"/>
+  <path d="M1120 292 L1160 600" class="arr"/>
+
+  <text x="24" y="940" class="sm">tx has dedicated sandbox and stricter workflow than all other agents by design.</text>
+</svg>
