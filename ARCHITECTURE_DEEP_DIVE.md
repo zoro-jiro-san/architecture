@@ -39,3 +39,12 @@ Phase 1: stable Docker sandbox baseline (current)
 Phase 2: side-by-side OpenSandbox path for research/tx
 Phase 3: cut over default external-task sandboxing to OpenSandbox
 Phase 4: keep Docker fallback for resilience
+
+
+## Operational Intelligence Upgrades (New)
+- InsightForge-lite decomposition (max 3 sub-queries)
+- ReACT caps (`MAX_TOOL_CALLS=5`, `MAX_REFLECTION=3`)
+- Outline-first task dispatch before subagent spawn
+- Persistent task state machine (`CREATED/RUNNING/DONE/FAILED`)
+- TX risk tier system (`SAFE/CAUTION/ESCALATE`)
+- JSONL audit logs with rotation

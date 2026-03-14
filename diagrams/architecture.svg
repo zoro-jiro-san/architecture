@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820">
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="860" viewBox="0 0 1320 860">
   <defs>
     <style>
       .box { fill:#f8fafc; stroke:#334155; stroke-width:2; rx:10; ry:10; }
@@ -16,81 +16,83 @@
     </marker>
   </defs>
 
-  <text x="30" y="42" class="title">Zoro Architecture — Live (5 Agents, Sandbox-First)</text>
+  <text x="30" y="42" class="title">Zoro Architecture — Upgraded Workflow + Sandbox Model</text>
 
   <rect x="60" y="90" width="190" height="60" class="box"/>
   <text x="112" y="126" class="txt">User (Sarthi)</text>
 
   <rect x="300" y="80" width="250" height="80" class="box"/>
   <text x="390" y="112" class="txt">main agent</text>
-  <text x="328" y="136" class="small">orchestrator + policy + response synthesis</text>
+  <text x="328" y="136" class="small">orchestrator + policy + synthesis</text>
 
-  <rect x="580" y="180" width="640" height="230" class="session"/>
-  <text x="600" y="208" class="txt">Session-Scoped Sandboxes</text>
+  <rect x="600" y="82" width="270" height="76" class="box"/>
+  <text x="670" y="112" class="txt">outline-first planner</text>
+  <text x="628" y="136" class="small">objective / plan / risks / outputs</text>
 
-  <rect x="640" y="250" width="210" height="86" class="box"/>
-  <text x="705" y="282" class="txt">research</text>
-  <text x="675" y="305" class="small">external research / APIs</text>
+  <rect x="580" y="190" width="660" height="240" class="session"/>
+  <text x="600" y="218" class="txt">Session-Scoped Sandboxes</text>
 
-  <rect x="900" y="250" width="210" height="86" class="box"/>
-  <text x="973" y="282" class="txt">coder</text>
-  <text x="953" y="305" class="small">code / test / build</text>
+  <rect x="640" y="260" width="220" height="90" class="box"/>
+  <text x="705" y="293" class="txt">research</text>
+  <text x="655" y="316" class="small">InsightForge-lite (max 3 queries)</text>
 
-  <rect x="580" y="440" width="640" height="230" class="agent"/>
-  <text x="600" y="468" class="txt">Persistent Agent-Scoped Sandbox (tx only)</text>
+  <rect x="910" y="260" width="220" height="90" class="box"/>
+  <text x="983" y="293" class="txt">coder</text>
+  <text x="943" y="316" class="small">ReACT caps (tools=5, reflect=3)</text>
 
-  <rect x="680" y="510" width="210" height="96" class="tx"/>
-  <text x="763" y="545" class="txt">tx</text>
-  <text x="705" y="568" class="small">transaction specialist</text>
-  <text x="703" y="589" class="small">ETHSKILLS + confirmation-first</text>
+  <rect x="580" y="460" width="660" height="240" class="agent"/>
+  <text x="600" y="488" class="txt">Persistent Specialist Domains</text>
 
-  <rect x="940" y="510" width="230" height="96" class="jan"/>
-  <text x="1018" y="545" class="txt">janitor</text>
-  <text x="952" y="568" class="small">host-level monitoring/cleanup</text>
-  <text x="955" y="589" class="small">sandbox.mode=off (device visibility)</text>
+  <rect x="700" y="535" width="220" height="100" class="tx"/>
+  <text x="785" y="570" class="txt">tx</text>
+  <text x="740" y="592" class="small">risk tiers: SAFE/CAUTION/ESCALATE</text>
+
+  <rect x="960" y="535" width="240" height="100" class="jan"/>
+  <text x="1039" y="570" class="txt">janitor</text>
+  <text x="982" y="592" class="small">host-mode monitoring + cleanup</text>
 
   <rect x="60" y="220" width="230" height="100" class="box"/>
   <text x="93" y="252" class="txt">Secrets Store</text>
-  <text x="82" y="276" class="small">~/.openclaw/secrets</text>
-  <text x="110" y="298" class="small">chmod 600</text>
+  <text x="82" y="276" class="small">~/.openclaw/secrets (600)</text>
 
-  <rect x="60" y="350" width="230" height="120" class="box"/>
-  <text x="80" y="382" class="txt">Learning/Memory Layer</text>
-  <text x="80" y="406" class="small">learnings.md + principles</text>
-  <text x="80" y="428" class="small">validated distillation loop</text>
-  <text x="80" y="450" class="small">daily sync to GitHub</text>
+  <rect x="60" y="350" width="230" height="140" class="box"/>
+  <text x="80" y="382" class="txt">State + Memory</text>
+  <text x="80" y="406" class="small">Task states: CREATED/RUNNING/</text>
+  <text x="80" y="426" class="small">DONE/FAILED</text>
+  <text x="80" y="448" class="small">learnings.md + principles</text>
+  <text x="80" y="468" class="small">validation before persistence</text>
 
-  <rect x="60" y="500" width="230" height="120" class="box"/>
-  <text x="96" y="532" class="txt">Schedulers</text>
-  <text x="78" y="556" class="small">docker prune: every 2h</text>
-  <text x="78" y="578" class="small">janitor: every 30m</text>
-  <text x="78" y="600" class="small">ethskills refresh: every 4h</text>
-
-  <rect x="1240" y="250" width="30" height="40" fill="none"/>
-  <rect x="1220" y="235" width="40" height="60" fill="none"/>
-
-  <rect x="1140" y="250" width="120" height="60" class="box"/>
-  <text x="1156" y="286" class="small">External APIs</text>
-  <rect x="1140" y="325" width="120" height="60" class="box"/>
-  <text x="1165" y="361" class="small">Repos</text>
-  <rect x="1140" y="510" width="120" height="60" class="box"/>
-  <text x="1153" y="546" class="small">Payment rails</text>
+  <rect x="60" y="520" width="230" height="130" class="box"/>
+  <text x="94" y="552" class="txt">Audit + Ops</text>
+  <text x="78" y="576" class="small">JSONL action logs (rotated)</text>
+  <text x="78" y="598" class="small">docker prune / janitor schedule</text>
+  <text x="78" y="620" class="small">ethskills refresh schedule</text>
 
   <path d="M250 120 L300 120" class="arrow"/>
-  <path d="M550 120 L730 250" class="arrow"/>
-  <path d="M550 120 L1000 250" class="arrow"/>
-  <path d="M550 120 L785 510" class="arrow"/>
-  <path d="M550 120 L1055 510" class="arrow"/>
+  <path d="M550 120 L600 120" class="arrow"/>
 
-  <path d="M290 260 L640 290" class="arrow"/>
-  <path d="M290 270 L900 290" class="arrow"/>
-  <path d="M290 285 L680 550" class="arrow"/>
+  <path d="M870 120 L740 260" class="arrow"/>
+  <path d="M870 120 L1020 260" class="arrow"/>
+  <path d="M870 120 L810 535" class="arrow"/>
+  <path d="M870 120 L1080 535" class="arrow"/>
 
-  <path d="M850 290 L1140 280" class="arrow"/>
-  <path d="M1110 290 L1140 355" class="arrow"/>
-  <path d="M890 555 L1140 540" class="arrow"/>
+  <path d="M290 260 L640 305" class="arrow"/>
+  <path d="M290 270 L910 305" class="arrow"/>
+  <path d="M290 280 L700 570" class="arrow"/>
 
-  <path d="M290 410 L300 410 L300 140" class="arrow"/>
+  <path d="M290 410 L600 410" class="arrow"/>
+  <path d="M290 580 L600 580" class="arrow"/>
 
-  <text x="30" y="780" class="small">Live profile: mode=all • session scope default • tx agent-scope + janitor host-mode • maxConcurrent=6 • subagents=12</text>
+  <rect x="1160" y="260" width="130" height="60" class="box"/>
+  <text x="1176" y="296" class="small">External APIs</text>
+  <rect x="1160" y="335" width="130" height="60" class="box"/>
+  <text x="1185" y="371" class="small">Repos</text>
+  <rect x="1160" y="535" width="130" height="60" class="box"/>
+  <text x="1173" y="571" class="small">Payment rails</text>
+
+  <path d="M860 305 L1160 290" class="arrow"/>
+  <path d="M1130 305 L1160 365" class="arrow"/>
+  <path d="M920 575 L1160 565" class="arrow"/>
+
+  <text x="30" y="820" class="small">Profile: sandbox-first, bounded loops, structured state, transaction risk tiers, host janitor for system hygiene.</text>
 </svg>
