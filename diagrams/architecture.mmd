@@ -1,44 +1,33 @@
 flowchart TB
-    U[User: Sarthi] --> M[main agent\nOrchestrator + Policy Gate]
+    U[User: Sarthi] --> M[main agent\nOrchestrator]
+    M --> MOD[moderator\nprogress + watchdog]
+    M --> O[outline-first planner]
 
-    M --> O[Outline-first planner]
     O --> R[research agent]
     O --> C[coder agent]
     O --> T[tx agent]
     O --> J[janitor agent]
 
-    subgraph SESSION_SANDBOX[Session-Scoped Sandboxes]
-      R --> SR[(research sandbox)]
-      C --> SC[(coder sandbox)]
+    MOD --> SW[swarm coordinator\n(task states)]
+    SW --> WR[worker-research-*\n(ephemeral)]
+    SW --> WC[worker-code-*\n(ephemeral)]
+    SW --> WV[worker-verify-*\n(ephemeral)]
+
+    subgraph SANDBOX[Sandbox Domains]
+      R --> SR[(session sandbox)]
+      C --> SC[(session sandbox)]
+      T --> ST[(agent sandbox)]
+      WR --> S1[(ephemeral sandbox)]
+      WC --> S2[(ephemeral sandbox)]
+      WV --> S3[(ephemeral sandbox)]
     end
 
-    subgraph AGENT_SANDBOX[Persistent Specialist Sandbox]
-      T --> ST[(tx sandbox)]
-    end
+    J --> HOST[Host monitoring/cleanup\n(sandbox off)]
+    MOD --> HOST
 
-    J --> HOST[Host OS\nMonitoring/Cleanup]
+    M --> SM[State machine\nCREATED/CLAIMED/RUNNING/DONE/FAILED/RETRYING]
+    M --> AJ[JSONL audit logs + rotation]
 
-    R --> CR[Crawlee-lite]
-    R --> IF[InsightForge-lite\nmax 3 sub-queries]
-    C --> RC[ReACT caps\nmax tools=5, reflect=3]
-    T --> RT[Risk Tiers\nSAFE/CAUTION/ESCALATE]
-
-    M --> SM[Task State Machine\nCREATED→RUNNING→DONE/FAILED]
-    M --> WD[Watchdog pattern\n(Antfarm-style)]
-    M --> AJ[JSONL Audit Trail\nrotated]
-
-    MEM[Observer/Reflector Memory Loop\n(daily/weekly)] --> M
-    SK[Chain Skill Packs\nHelius/Solana/Layr (phased)] --> T
-
-    SR --> EXT[External APIs/Web]
-    SC --> REPO[Repos/Toolchains]
-    ST --> PAY[Payment rails (future)]
-
-    SEC[(Secrets Store\n~/.openclaw/secrets)] --> R
-    SEC --> C
-    SEC --> T
-
-    style T fill:#fff1f2,stroke:#b91c1c,stroke-width:2px
-    style J fill:#ecfeff,stroke:#0e7490,stroke-width:2px
-    style SESSION_SANDBOX fill:#eef7ff,stroke:#2563eb,stroke-width:1px
-    style AGENT_SANDBOX fill:#f8fafc,stroke:#64748b,stroke-width:1px
+    SR --> EXT[External APIs]
+    SC --> REPO[Repos/toolchains]
+    ST --> PAY[Payment rails]

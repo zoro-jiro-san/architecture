@@ -40,3 +40,5 @@ Latest production architecture for Zoro on OpenClaw (Raspberry Pi).
 - [`WORKFLOW_UPGRADES.md`](./WORKFLOW_UPGRADES.md)
 
 - [`TECH_STACK_EXTENSIONS.md`](./TECH_STACK_EXTENSIONS.md)
+
+- [`ANTFARM_SWARM_ARCHITECTURE.md`](./ANTFARM_SWARM_ARCHITECTURE.md)
