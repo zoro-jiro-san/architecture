@@ -1,28 +1,48 @@
-flowchart TB
-    U[User\nSarthi] --> M[main\n- classify intent\n- set policy bounds\n- synthesize final output]
+flowchart LR
+  U[User / Sarthi] --> M[Main Agent\nOrchestrator]
+  M --> P[Planner\nTask decomposition]
 
-    M --> MOD[moderator (host)\n- monitor progress\n- detect stuck workers\n- escalate failures\n- report status]
-    M --> PLAN[planner\n- outline-first plan\n- define outputs\n- split into stories]
+  %% On-device control plane (outside sandbox)
+  subgraph DEV[On-Device Control Plane (No Sandbox)]
+    M
+    P
+    MOD[Moderator\nProgress monitor + feedback]
+    JAN[Janitor\nCleanup executor]
+    MEM[(Memory / Learnings)]
+    CRON[(Cron jobs / schedulers)]
+    AUD[(Audit logs / state)]
+  end
 
-    PLAN --> R[research\n(session sandbox)\n- web/API discovery\n- insightforge-lite decomposition\n- source confidence tags]
-    PLAN --> C[coder\n(session sandbox)\n- implement/test/fix\n- bounded ReACT loops\n- verify artifacts]
-    PLAN --> T[tx\n(agent sandbox, isolated)\n- tx preflight checks\n- risk tiers SAFE/CAUTION/ESCALATE\n- explicit human confirm for state changes\n- onchain settlement workflows]
-    PLAN --> J[janitor (host)\n- memory/disk checks\n- cleanup temp/cache\n- docker hygiene]
+  %% Sandboxes on right stacked
+  subgraph SBX[Sandbox Zone]
+    direction TB
+    RSBX[Research Sandbox\n(research agent)\n- external API/web calls\n- crawling + synthesis]
+    CSBX[Coder Sandbox\n(coder agent)\n- repo/toolchain operations\n- test/build loops]
+    TXSBX[TX Sandbox (Dedicated)\n(tx agent)\n- preflight checks\n- confirm-gated state changes\n- onchain settlement flows]
+    AFSBX[Antfarm Swarm Sandbox\n(ephemeral workers)\n- worker-research-*\n- worker-code-*\n- worker-verify-*\n- TTL + retries]
+  end
 
-    MOD --> SW[swarm coordinator\n- state machine\n- retries with caps\n- worker TTL control]
+  %% Main/planner dispatch into sandboxes
+  P --> RSBX
+  P --> CSBX
+  P --> TXSBX
+  P --> AFSBX
 
-    SW --> WR[worker-research-*\n(ephemeral sandbox)\n- short-lived task workers]
-    SW --> WC[worker-code-*\n(ephemeral sandbox)\n- short-lived task workers]
-    SW --> WV[worker-verify-*\n(ephemeral sandbox)\n- output validation workers]
+  %% Moderator feedback loop only to main (not direct ops)
+  MOD -->|feedback + status| M
 
-    M --> STATE[state model\nCREATED→CLAIMED→RUNNING→DONE/FAILED/RETRYING]
-    M --> AUDIT[JSONL audit logs\nrotated + summarized]
-    M --> MEM[memory loop\nobserver daily\nreflector weekly]
+  %% Main coordinates on-device operations
+  M -->|request cleanup| JAN
+  M --> MEM
+  M --> AUD
+  M --> CRON
 
-    SEC[(secrets store\n~/.openclaw/secrets\n600 perms)] --> R
-    SEC --> C
-    SEC --> T
+  %% Janitor touches on-device hygiene only
+  JAN --> MEM
+  JAN --> AUD
 
-    R --> EXT[External APIs/Web]
-    C --> REPO[Repos/Toolchains]
-    T --> PAY[Blockchain/Payment Rails]
+  %% style hints
+  style TXSBX fill:#fff1f2,stroke:#b91c1c,stroke-width:2px
+  style MOD fill:#ecfeff,stroke:#0e7490,stroke-width:2px
+  style JAN fill:#ecfeff,stroke:#0e7490,stroke-width:2px
+  style SBX fill:#eef7ff,stroke:#2563eb,stroke-width:1px
