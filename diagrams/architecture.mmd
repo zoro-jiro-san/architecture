@@ -1,39 +1,42 @@
 flowchart TB
     U[User: Sarthi] --> M[main agent\nOrchestrator + Policy Gate]
 
-    M --> O[Outline-first planner\nobjective/plan/risks/outputs]
+    M --> O[Outline-first planner]
     O --> R[research agent]
     O --> C[coder agent]
     O --> T[tx agent]
     O --> J[janitor agent]
 
     subgraph SESSION_SANDBOX[Session-Scoped Sandboxes]
-      R --> SR[(sandbox session)]
-      C --> SC[(sandbox session)]
+      R --> SR[(research sandbox)]
+      C --> SC[(coder sandbox)]
     end
 
-    subgraph AGENT_SANDBOX[Persistent Agent Sandbox]
+    subgraph AGENT_SANDBOX[Persistent Specialist Sandbox]
       T --> ST[(tx sandbox)]
     end
 
-    J --> HOST[Host OS Monitoring/Cleanup\n(sandbox off)]
+    J --> HOST[Host OS\nMonitoring/Cleanup]
+
+    R --> CR[Crawlee-lite]
+    R --> IF[InsightForge-lite\nmax 3 sub-queries]
+    C --> RC[ReACT caps\nmax tools=5, reflect=3]
+    T --> RT[Risk Tiers\nSAFE/CAUTION/ESCALATE]
+
+    M --> SM[Task State Machine\nCREATED→RUNNING→DONE/FAILED]
+    M --> WD[Watchdog pattern\n(Antfarm-style)]
+    M --> AJ[JSONL Audit Trail\nrotated]
+
+    MEM[Observer/Reflector Memory Loop\n(daily/weekly)] --> M
+    SK[Chain Skill Packs\nHelius/Solana/Layr (phased)] --> T
 
     SR --> EXT[External APIs/Web]
     SC --> REPO[Repos/Toolchains]
     ST --> PAY[Payment rails (future)]
 
-    R --> IF[InsightForge-lite\nmax 3 sub-queries]
-    C --> RC[ReACT caps\nmax tools=5, reflect=3]
-    T --> RT[Tiering\nSAFE/CAUTION/ESCALATE]
-
-    M --> SM[Task State Machine\nCREATED→RUNNING→DONE/FAILED]
-    M --> AJ[JSONL Audit Trail\nrotated logs]
-
     SEC[(Secrets Store\n~/.openclaw/secrets)] --> R
     SEC --> C
     SEC --> T
-
-    LRN[(learnings.md + principles)] --> M
 
     style T fill:#fff1f2,stroke:#b91c1c,stroke-width:2px
     style J fill:#ecfeff,stroke:#0e7490,stroke-width:2px

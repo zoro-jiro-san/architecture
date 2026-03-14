@@ -48,3 +48,10 @@ Phase 4: keep Docker fallback for resilience
 - Persistent task state machine (`CREATED/RUNNING/DONE/FAILED`)
 - TX risk tier system (`SAFE/CAUTION/ESCALATE`)
 - JSONL audit logs with rotation
+
+
+## Tooling & Memory Extensions (New)
+- Crawlee-Python (light mode) integrated for structured web research.
+- Observer/Reflector memory loop introduced (daily summarize, weekly distill).
+- Chain skill packs (Helius/Solana/Layr) integrated via phased safety model.
+- Antfarm-inspired watchdog and role-tiered orchestration patterns adopted.

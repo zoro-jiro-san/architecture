@@ -38,3 +38,5 @@ Latest production architecture for Zoro on OpenClaw (Raspberry Pi).
 - [`RUNBOOKS.md`](./RUNBOOKS.md)
 
 - [`WORKFLOW_UPGRADES.md`](./WORKFLOW_UPGRADES.md)
+
+- [`TECH_STACK_EXTENSIONS.md`](./TECH_STACK_EXTENSIONS.md)
