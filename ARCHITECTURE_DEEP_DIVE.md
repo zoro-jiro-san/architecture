@@ -55,3 +55,10 @@ Phase 4: keep Docker fallback for resilience
 - Observer/Reflector memory loop introduced (daily summarize, weekly distill).
 - Chain skill packs (Helius/Solana/Layr) integrated via phased safety model.
 - Antfarm-inspired watchdog and role-tiered orchestration patterns adopted.
+
+
+## New Permanent Role: Architect Agent
+- Purpose: continuous architecture evolution and upgrade planning.
+- Mode: host (no sandbox) for full visibility into system topology and ops.
+- Cadence: periodic review cycle every 6 hours.
+- Output: actionable improvement proposals and risk-aware rollout plans.

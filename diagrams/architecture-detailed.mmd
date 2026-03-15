@@ -2,47 +2,43 @@ flowchart LR
   U[User / Sarthi] --> M[Main Agent\nOrchestrator]
   M --> P[Planner\nTask decomposition]
 
-  %% On-device control plane (outside sandbox)
   subgraph DEV[On-Device Control Plane (No Sandbox)]
     M
     P
     MOD[Moderator\nProgress monitor + feedback]
     JAN[Janitor\nCleanup executor]
+    ARC[Architect\nUpgrade planner + release watcher]
     MEM[(Memory / Learnings)]
     CRON[(Cron jobs / schedulers)]
     AUD[(Audit logs / state)]
   end
 
-  %% Sandboxes on right stacked
   subgraph SBX[Sandbox Zone]
     direction TB
-    RSBX[Research Sandbox\n(research agent)\n- external API/web calls\n- crawling + synthesis]
-    CSBX[Coder Sandbox\n(coder agent)\n- repo/toolchain operations\n- test/build loops]
-    TXSBX[TX Sandbox (Dedicated)\n(tx agent)\n- preflight checks\n- confirm-gated state changes\n- onchain settlement flows]
-    AFSBX[Antfarm Swarm Sandbox\n(ephemeral workers)\n- worker-research-*\n- worker-code-*\n- worker-verify-*\n- TTL + retries]
+    RSBX[Research Sandbox\n(research agent)]
+    CSBX[Coder Sandbox\n(coder agent)]
+    TXSBX[TX Dedicated Sandbox\n(tx agent)]
+    AFSBX[Antfarm Swarm Sandbox\n(ephemeral workers)]
   end
 
-  %% Main/planner dispatch into sandboxes
   P --> RSBX
   P --> CSBX
   P --> TXSBX
   P --> AFSBX
 
-  %% Moderator feedback loop only to main (not direct ops)
-  MOD -->|feedback + status| M
+  MOD -->|feedback/status| M
+  ARC -->|upgrade proposals| M
 
-  %% Main coordinates on-device operations
   M -->|request cleanup| JAN
   M --> MEM
   M --> AUD
   M --> CRON
 
-  %% Janitor touches on-device hygiene only
   JAN --> MEM
   JAN --> AUD
 
-  %% style hints
   style TXSBX fill:#fff1f2,stroke:#b91c1c,stroke-width:2px
   style MOD fill:#ecfeff,stroke:#0e7490,stroke-width:2px
   style JAN fill:#ecfeff,stroke:#0e7490,stroke-width:2px
+  style ARC fill:#ede9fe,stroke:#6d28d9,stroke-width:2px
   style SBX fill:#eef7ff,stroke:#2563eb,stroke-width:1px

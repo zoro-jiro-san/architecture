@@ -18,6 +18,7 @@ Latest production architecture for Zoro on OpenClaw (Raspberry Pi).
 - SVG diagram: [`diagrams/architecture.svg`](./diagrams/architecture.svg)
 
 ## What is live now
+- New permanent role: `architect` (upgrade planning + release/research watch)
 - 5-agent topology: `main`, `research`, `coder`, `tx`, `janitor`
 - Sandbox-first execution (`mode=all`)
 - Mixed sandbox scopes:

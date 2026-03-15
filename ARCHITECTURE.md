@@ -92,3 +92,10 @@ Goal: high CPU utilization with bounded memory growth.
 - `15 */4 * * * update-ethskills.sh`
 - `0 6 * * * my-learnings push`
 
+
+
+### 7) `architect` (permanent architecture planner)
+- Tracks new tools, releases, and research
+- Produces phased upgrade proposals (P0/P1/P2)
+- Runs periodic architecture reviews
+- Host-mode visibility for system-wide planning
