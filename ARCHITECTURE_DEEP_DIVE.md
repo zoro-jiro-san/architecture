@@ -69,3 +69,9 @@ Phase 4: keep Docker fallback for resilience
 - Private keys remain on host and are never placed inside tx sandbox.
 - tx sandbox can request signatures only through local Unix socket.
 - Policy defaults to testnet mode before any mainnet enablement.
+
+
+## Context Layer Upgrade (Context Hub)
+- Integrated `chub` as pre-implementation API context fetch tool.
+- Applied to research/coder/research-deep paths to reduce API drift errors.
+- Architect role owns recurring doc-ID curation and annotation hygiene.
