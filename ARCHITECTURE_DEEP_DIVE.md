@@ -62,3 +62,10 @@ Phase 4: keep Docker fallback for resilience
 - Mode: host (no sandbox) for full visibility into system topology and ops.
 - Cadence: periodic review cycle every 6 hours.
 - Output: actionable improvement proposals and risk-aware rollout plans.
+
+
+## TX Key Custody Upgrade (V1)
+- Introduced host-side signer daemon and sandbox signing client.
+- Private keys remain on host and are never placed inside tx sandbox.
+- tx sandbox can request signatures only through local Unix socket.
+- Policy defaults to testnet mode before any mainnet enablement.
