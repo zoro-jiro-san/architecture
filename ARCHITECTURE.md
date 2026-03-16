@@ -99,3 +99,9 @@ Goal: high CPU utilization with bounded memory growth.
 - Produces phased upgrade proposals (P0/P1/P2)
 - Runs periodic architecture reviews
 - Host-mode visibility for system-wide planning
+
+
+### 8) `research-deep` (optional deep research lane)
+- Uses AutoResearchClaw-style long-form pipeline for heavyweight investigations
+- Sandbox-only, explicit trigger, artifact-focused outputs
+- Separate from normal research to protect performance
