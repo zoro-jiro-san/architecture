@@ -1,98 +1,112 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1020" viewBox="0 0 1600 1020">
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1050" viewBox="0 0 1700 1050">
   <defs>
     <style>
-      .title{font:700 24px Arial;fill:#0f172a}
-      .box{fill:#f8fafc;stroke:#334155;stroke-width:2;rx:10;ry:10}
-      .host{fill:#ecfeff;stroke:#0e7490;stroke-width:2;rx:10;ry:10}
-      .arch{fill:#ede9fe;stroke:#6d28d9;stroke-width:2;rx:10;ry:10}
-      .sbx{fill:#eef7ff;stroke:#2563eb;stroke-width:2;rx:12;ry:12}
+      .title{font:700 28px Arial;fill:#0f172a}
+      .lane{fill:#f8fafc;stroke:#475569;stroke-width:2;rx:14;ry:14}
+      .sbxLane{fill:#eef7ff;stroke:#2563eb;stroke-width:2;rx:14;ry:14}
+      .box{fill:#ffffff;stroke:#334155;stroke-width:2;rx:12;ry:12}
+      .host{fill:#ecfeff;stroke:#0e7490;stroke-width:2;rx:12;ry:12}
+      .arch{fill:#ede9fe;stroke:#6d28d9;stroke-width:2;rx:12;ry:12}
       .tx{fill:#fff1f2;stroke:#b91c1c;stroke-width:2;rx:12;ry:12}
-      .txt{font:14px Arial;fill:#0f172a}
+      .sign{fill:#fee2e2;stroke:#b91c1c;stroke-width:2;rx:12;ry:12}
+      .txt{font:15px Arial;fill:#0f172a}
       .sm{font:12px Arial;fill:#334155}
-      .arr{stroke:#475569;stroke-width:2;marker-end:url(#m);fill:none}
+      .arr{stroke:#475569;stroke-width:2.2;marker-end:url(#m);fill:none}
+      .arr2{stroke:#b91c1c;stroke-width:2.2;marker-end:url(#m2);fill:none}
     </style>
     <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#475569"/></marker>
+    <marker id="m2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#b91c1c"/></marker>
   </defs>
 
-  <text x="24" y="38" class="title">Zoro Architecture — Detailed (Main + Moderator + Janitor + Architect + Stacked Sandboxes)</text>
+  <text x="30" y="45" class="title">Zoro Architecture (Clean Layout)</text>
 
-  <rect x="40" y="80" width="160" height="56" class="box"/>
-  <text x="92" y="114" class="txt">User</text>
+  <!-- Lanes -->
+  <rect x="30" y="80" width="760" height="930" class="lane"/>
+  <text x="50" y="110" class="txt">On-Device Control Plane (Host)</text>
 
-  <rect x="30" y="170" width="760" height="800" class="host"/>
-  <text x="52" y="200" class="txt">On-Device Control Plane (outside sandbox)</text>
+  <rect x="840" y="80" width="830" height="930" class="sbxLane"/>
+  <text x="860" y="110" class="txt">Sandbox Zone (Isolated Execution)</text>
 
-  <rect x="70" y="240" width="220" height="90" class="box"/>
-  <text x="145" y="274" class="txt">Main Agent</text>
-  <text x="92" y="297" class="sm">orchestrator + synthesis</text>
+  <!-- User + main flow -->
+  <rect x="60" y="150" width="160" height="60" class="box"/>
+  <text x="112" y="187" class="txt">User</text>
 
-  <rect x="320" y="240" width="220" height="90" class="box"/>
-  <text x="394" y="274" class="txt">Planner</text>
-  <text x="350" y="297" class="sm">task decomposition + routing</text>
+  <rect x="270" y="140" width="230" height="90" class="box"/>
+  <text x="345" y="173" class="txt">Main Agent</text>
+  <text x="300" y="196" class="sm">orchestrator + synthesis</text>
 
-  <rect x="70" y="370" width="220" height="110" class="host"/>
-  <text x="138" y="404" class="txt">Moderator</text>
-  <text x="84" y="427" class="sm">progress checks + feedback</text>
-  <text x="84" y="447" class="sm">no direct execution routing</text>
+  <rect x="540" y="140" width="220" height="90" class="box"/>
+  <text x="615" y="173" class="txt">Planner</text>
+  <text x="566" y="196" class="sm">decompose + route</text>
 
-  <rect x="320" y="370" width="220" height="110" class="host"/>
-  <text x="397" y="404" class="txt">Janitor</text>
-  <text x="336" y="427" class="sm">cleanup on main request</text>
-  <text x="336" y="447" class="sm">host hygiene + maintenance</text>
+  <!-- Host support boxes -->
+  <rect x="80" y="290" width="220" height="100" class="host"/>
+  <text x="148" y="325" class="txt">Moderator</text>
+  <text x="96" y="347" class="sm">progress + feedback</text>
 
-  <rect x="570" y="370" width="190" height="110" class="arch"/>
-  <text x="628" y="404" class="txt">Architect</text>
-  <text x="586" y="427" class="sm">upgrade planner</text>
-  <text x="586" y="447" class="sm">release/research watch</text>
+  <rect x="330" y="290" width="220" height="100" class="arch"/>
+  <text x="404" y="325" class="txt">Architect</text>
+  <text x="346" y="347" class="sm">upgrade planning</text>
 
-  <rect x="70" y="520" width="220" height="90" class="box"/>
-  <text x="116" y="554" class="txt">Memory/Learnings</text>
-  <text x="88" y="577" class="sm">on-device persistent files</text>
+  <rect x="580" y="290" width="180" height="100" class="host"/>
+  <text x="638" y="325" class="txt">Janitor</text>
+  <text x="594" y="347" class="sm">cleanup/hygiene</text>
 
-  <rect x="320" y="520" width="220" height="90" class="box"/>
-  <text x="383" y="554" class="txt">Cron/Schedulers</text>
-  <text x="355" y="577" class="sm">periodic jobs</text>
+  <rect x="80" y="430" width="220" height="90" class="box"/>
+  <text x="130" y="465" class="txt">Memory</text>
+  <text x="100" y="486" class="sm">learnings + context</text>
 
-  <rect x="570" y="520" width="190" height="90" class="box"/>
-  <text x="620" y="554" class="txt">Audit/State</text>
-  <text x="584" y="577" class="sm">jsonl + state machine</text>
+  <rect x="330" y="430" width="220" height="90" class="box"/>
+  <text x="383" y="465" class="txt">Audit/State</text>
+  <text x="350" y="486" class="sm">jsonl + state machine</text>
 
-  <rect x="820" y="170" width="740" height="800" class="sbx"/>
-  <text x="844" y="200" class="txt">Sandbox Zone (stacked, role-isolated)</text>
+  <rect x="580" y="430" width="180" height="90" class="box"/>
+  <text x="630" y="465" class="txt">Cron</text>
+  <text x="598" y="486" class="sm">scheduled jobs</text>
 
-  <rect x="880" y="240" width="620" height="130" class="sbx"/>
-  <text x="1118" y="274" class="txt">Research Sandbox</text>
-  <text x="920" y="298" class="sm">research agent • external API/web calls • crawling/synthesis</text>
+  <rect x="180" y="560" width="420" height="110" class="sign"/>
+  <text x="305" y="595" class="txt">Host TX Signer</text>
+  <text x="195" y="618" class="sm">key custody on host • tx sandbox gets signatures only</text>
 
-  <rect x="880" y="400" width="620" height="130" class="sbx"/>
-  <text x="1138" y="434" class="txt">Coder Sandbox</text>
-  <text x="920" y="458" class="sm">coder agent • repo/toolchain ops • build/test loops</text>
+  <!-- Sandbox stack -->
+  <rect x="900" y="170" width="700" height="140" class="box"/>
+  <text x="1160" y="205" class="txt">Research Sandbox</text>
+  <text x="930" y="229" class="sm">external API/web calls • crawling • synthesis</text>
 
-  <rect x="880" y="560" width="620" height="150" class="tx"/>
-  <text x="1104" y="594" class="txt">TX Dedicated Sandbox</text>
-  <text x="920" y="618" class="sm">tx agent • preflight/risk tiers • explicit confirm for state changes</text>
-  <text x="920" y="640" class="sm">onchain settlement + transaction safety model</text>
+  <rect x="900" y="350" width="700" height="140" class="box"/>
+  <text x="1180" y="385" class="txt">Coder Sandbox</text>
+  <text x="930" y="409" class="sm">repo/toolchain operations • build/test loops</text>
 
-  <rect x="880" y="740" width="620" height="170" class="sbx"/>
-  <text x="1070" y="774" class="txt">Antfarm Swarm Sandbox</text>
-  <text x="920" y="798" class="sm">ephemeral workers: research/code/verify • TTL-bound • retry-capped</text>
-  <text x="920" y="820" class="sm">temporary task sandboxes with cleanup on completion/timeout</text>
+  <rect x="900" y="530" width="700" height="150" class="tx"/>
+  <text x="1160" y="565" class="txt">TX Dedicated Sandbox</text>
+  <text x="930" y="589" class="sm">preflight + risk tiers • no private keys in sandbox</text>
+  <text x="930" y="611" class="sm">state-changing tx requires explicit human confirmation</text>
 
-  <path d="M200 108 L70 240" class="arr"/>
-  <path d="M290 285 L320 285" class="arr"/>
+  <rect x="900" y="720" width="700" height="170" class="box"/>
+  <text x="1130" y="755" class="txt">Antfarm Swarm Sandbox</text>
+  <text x="930" y="779" class="sm">ephemeral workers: worker-research / worker-code / worker-verify</text>
+  <text x="930" y="801" class="sm">TTL-bound + retry-capped + cleanup on completion/timeout</text>
 
-  <path d="M540 285 L880 305" class="arr"/>
-  <path d="M540 285 L880 465" class="arr"/>
-  <path d="M540 285 L880 635" class="arr"/>
-  <path d="M540 285 L880 805" class="arr"/>
+  <!-- Arrows clean -->
+  <path d="M220 180 L270 180" class="arr"/>
+  <path d="M500 185 L540 185" class="arr"/>
 
-  <path d="M290 425 L70 285" class="arr"/>
-  <path d="M665 425 L70 285" class="arr"/>
+  <path d="M760 185 L900 230" class="arr"/>
+  <path d="M760 185 L900 410" class="arr"/>
+  <path d="M760 185 L900 595" class="arr"/>
+  <path d="M760 185 L900 805" class="arr"/>
 
-  <path d="M290 285 L320 425" class="arr"/>
-  <path d="M290 285 L70 565" class="arr"/>
-  <path d="M290 285 L320 565" class="arr"/>
-  <path d="M290 285 L570 565" class="arr"/>
+  <path d="M300 340 L270 190" class="arr"/>
+  <path d="M550 340 L270 190" class="arr"/>
+  <path d="M670 340 L270 190" class="arr"/>
 
-  <text x="24" y="992" class="sm">Moderator and Architect only feed back to Main. Main routes execution. Janitor executes host cleanup on Main request.</text>
+  <path d="M270 190 L670 340" class="arr"/>
+  <path d="M270 190 L190 470" class="arr"/>
+  <path d="M270 190 L440 470" class="arr"/>
+  <path d="M270 190 L650 470" class="arr"/>
+
+  <path d="M900 605 L600 615" class="arr2"/>
+  <path d="M600 635 L900 635" class="arr2"/>
+
+  <text x="30" y="1035" class="sm">Control plane on host (left), execution sandboxes on right. Moderator/Architect feed Main; Main coordinates Janitor. TX signing boundary isolated on host.</text>
 </svg>

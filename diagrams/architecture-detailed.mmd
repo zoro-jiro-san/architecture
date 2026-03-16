@@ -1,25 +1,26 @@
 flowchart LR
-  U[User / Sarthi] --> M[Main Agent]
+  U[User / Sarthi] --> M[Main Agent\nOrchestrator]
   M --> P[Planner]
 
-  subgraph DEV[On-Device Control Plane (No Sandbox)]
+  subgraph DEV[On-Device Control Plane (Host)]
+    direction TB
     M
     P
-    MOD[Moderator]
-    JAN[Janitor]
-    ARC[Architect]
-    SIGNER[Host TX Signer\n(key custody)]
-    MEM[(Memory)]
-    CRON[(Cron)]
-    AUD[(Audit/State)]
+    MOD[Moderator\nprogress + feedback]
+    ARC[Architect\nupgrade planning]
+    JAN[Janitor\nhygiene / cleanup]
+    MEM[(Memory & Learnings)]
+    AUD[(Audit & State)]
+    CRON[(Schedulers)]
+    SIGN[Host TX Signer\nkey custody]
   end
 
-  subgraph SBX[Sandbox Zone]
+  subgraph SBX[Sandbox Zone (Isolated Execution)]
     direction TB
     RSBX[Research Sandbox]
     CSBX[Coder Sandbox]
-    TXSBX[TX Sandbox\n(no key material)]
-    AFSBX[Antfarm Swarm Sandbox]
+    TXSBX[TX Sandbox\nNO key material]
+    AFSBX[Antfarm Swarm Sandbox\nEphemeral workers]
   end
 
   P --> RSBX
@@ -27,17 +28,18 @@ flowchart LR
   P --> TXSBX
   P --> AFSBX
 
-  TXSBX -->|sign request via unix socket| SIGNER
-  SIGNER -->|signature only| TXSBX
+  TXSBX -->|sign request| SIGN
+  SIGN -->|signature only| TXSBX
 
-  MOD --> M
-  ARC --> M
-  M --> JAN
+  MOD -->|status/feedback| M
+  ARC -->|upgrade proposals| M
+  M -->|cleanup request| JAN
   M --> MEM
   M --> AUD
   M --> CRON
 
-  style SIGNER fill:#fee2e2,stroke:#b91c1c,stroke-width:2px
-  style TXSBX fill:#fff1f2,stroke:#b91c1c,stroke-width:2px
-  style ARC fill:#ede9fe,stroke:#6d28d9,stroke-width:2px
   style SBX fill:#eef7ff,stroke:#2563eb,stroke-width:1px
+  style TXSBX fill:#fff1f2,stroke:#b91c1c,stroke-width:2px
+  style SIGN fill:#fee2e2,stroke:#b91c1c,stroke-width:2px
+  style MOD fill:#ecfeff,stroke:#0e7490,stroke-width:2px
+  style ARC fill:#ede9fe,stroke:#6d28d9,stroke-width:2px
